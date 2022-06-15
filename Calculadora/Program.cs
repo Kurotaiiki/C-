@@ -41,7 +41,7 @@ namespace Calculadora
                     );
                 opcion = Calcular.Validar();
 
-            } while (opcion < 0 && opcion > 5);
+            } while (opcion < 1 && opcion > 5);
         }
     }
 }
