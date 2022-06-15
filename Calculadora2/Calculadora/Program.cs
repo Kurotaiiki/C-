@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
-
-namespace Calculadora
+﻿namespace Calculadora
 {
     internal class Program
     {
@@ -14,12 +7,12 @@ namespace Calculadora
             Menu();
 
             ReadKey();
-            
+
         }
 
         static void Menu()
         {
-            double opcion=2222;
+            double opcion = 2222;
             do
             {
                 if (opcion != 2222)
@@ -42,7 +35,7 @@ namespace Calculadora
                     );
                 opcion = Calcular.Validar();
 
-            }while (opcion>0 && opcion<5);
+            } while (opcion > 0 && opcion < 5);
         }
     }
 }
