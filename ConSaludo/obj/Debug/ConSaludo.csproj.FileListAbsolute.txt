@@ -4,3 +4,9 @@ D:\Desktop\VS code\C#\ConSaludo\obj\Debug\ConSaludo.csproj.AssemblyReference.cac
 D:\Desktop\VS code\C#\ConSaludo\obj\Debug\ConSaludo.csproj.CoreCompileInputs.cache
 D:\Desktop\VS code\C#\ConSaludo\obj\Debug\ConSaludo.exe
 D:\Desktop\VS code\C#\ConSaludo\obj\Debug\ConSaludo.pdb
+D:\Laptop\VS code\C-\ConSaludo\bin\Debug\ConSaludo.exe
+D:\Laptop\VS code\C-\ConSaludo\bin\Debug\ConSaludo.pdb
+D:\Laptop\VS code\C-\ConSaludo\obj\Debug\ConSaludo.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C-\ConSaludo\obj\Debug\ConSaludo.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C-\ConSaludo\obj\Debug\ConSaludo.exe
+D:\Laptop\VS code\C-\ConSaludo\obj\Debug\ConSaludo.pdb
