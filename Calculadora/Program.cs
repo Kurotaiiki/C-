@@ -10,38 +10,17 @@ namespace Calculadora
     {
         static void Main(string[] args)
         {
-            Menu();
+            Calcular calc = new Calcular();
+            Menu menu = new Menu();
+            MenuSalida salida = new MenuSalida();
+            bool ejecutar = true;
 
-            ReadKey();
-
-        }
-
-        static void Menu()
-        {
-            double opcion = 2222;
-            do
+            while (ejecutar)
             {
-                if (opcion != 2222)
-                {
-                    WriteLine("");
-                    Write("Recuerde mirar las opciones disponibles");
-                }
-                WriteLine(
-                    "|-/////////////////////////////|--|\n" +
-                    "|----------Calculadora------------|\n" +
-                    "|--/////////////////////////////--|\n" +
-                    "|--Que operacion desea realizar---|\n" +
-                    "|--/////////////////////////////--|\n" +
-                    "|--/////////////////////////////--|\n" +
-                    "|--1.Suma-------------------------|\n" +
-                    "|--2.Resta------------------------|\n" +
-                    "|--3.Multiplicacion---------------|\n" +
-                    "|--4.Division---------------------|\n" +
-                    "|--/////////////////////////////--|"
-                    );
-                opcion = Calcular.Validar();
-
-            } while (opcion < 1 && opcion > 5);
+                menu.Crear(calc);
+                ejecutar= salida.crear(calc);                
+            }
         }
+
     }
 }
