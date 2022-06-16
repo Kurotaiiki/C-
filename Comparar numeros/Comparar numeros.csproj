@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1322EA64-438C-4F76-B930-7BDBC4C89772}</ProjectGuid>
+    <ProjectGuid>{652633DF-8E38-4BAC-BEDE-2A06B934887F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Pruebas</RootNamespace>
-    <AssemblyName>Pruebas</AssemblyName>
+    <RootNamespace>Comparar_numeros</RootNamespace>
+    <AssemblyName>Comparar numeros</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consuma.cs" />
+    <Compile Include="Comparar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
