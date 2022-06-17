@@ -8,6 +8,7 @@
 //White	    \x1B[37m	\x1B[47m
 // 
 //Cualquier color(con V en[0 - 255])	\x1B[38; 5; Vm	\x1B[48; 5; Vm
+// 
 //Cualquier RGB color(Con valores en[0 - 255])	\x1B[38; 2; R; G; Bm	\x1B[48; 2; R; G; Bm
 
 #include <iostream>
@@ -15,14 +16,18 @@ using namespace std;
 
 int main()
 {
-    string r = "120";
-    string g = "200";
-    string b = "120";
+    string r = "255";
+    string g = "0";
+    string b = "0";
+    string br = "0";
+    string bg = "100";
+    string bb = "250";
 
     string color = "\x1b[38;2;" + r + ";" + g + ";" + b + "m";
+    string bgcolor = "\x1b[48;2;" + br + ";" + bg + ";" + bb + "m";
 
 
-    cout<<color<<" hello world\x1b[0m";
+    cout<<color<<bgcolor<<" hello world\x1b[0m";
     system("pause");
 }
 

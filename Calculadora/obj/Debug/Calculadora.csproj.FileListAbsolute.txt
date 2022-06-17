@@ -4,3 +4,9 @@ D:\Desktop\VS code\C#\Calculadora\bin\Debug\Calculadora.exe
 D:\Desktop\VS code\C#\Calculadora\bin\Debug\Calculadora.pdb
 D:\Desktop\VS code\C#\Calculadora\obj\Debug\Calculadora.exe
 D:\Desktop\VS code\C#\Calculadora\obj\Debug\Calculadora.pdb
+D:\Laptop\VS code\C-\Calculadora\bin\Debug\Calculadora.exe
+D:\Laptop\VS code\C-\Calculadora\bin\Debug\Calculadora.pdb
+D:\Laptop\VS code\C-\Calculadora\obj\Debug\Calculadora.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C-\Calculadora\obj\Debug\Calculadora.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C-\Calculadora\obj\Debug\Calculadora.exe
+D:\Laptop\VS code\C-\Calculadora\obj\Debug\Calculadora.pdb
