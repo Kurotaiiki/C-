@@ -16,7 +16,7 @@ namespace Ejercicios
             Menu menu_salida = new Menu();
             bool menu_exe = true;
             int option;
-            menu.Create(new string[] { "Saludo", "Datos del estudiante", "Suma", "Operaciones basicas", "Comparar", "Calculos", "Cuadratica", "Areas", "Salario", "Mayor de edad" });
+            menu.Create(new string[] { "Saludo", "Datos del estudiante", "Suma", "Operaciones basicas", "Comparar", "Calculos", "Cuadratica", "Areas", "Salario", "Mayor de edad","purino me lo chupa" });
             menu_salida.Create(new string[] { "Reiniciar", "Salir" }, false);
 
 
