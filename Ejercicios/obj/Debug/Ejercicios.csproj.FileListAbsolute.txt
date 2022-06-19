@@ -4,3 +4,9 @@ D:\Desktop\VS code\C#\Ejercicios\obj\Debug\Ejercicios.csproj.AssemblyReference.c
 D:\Desktop\VS code\C#\Ejercicios\obj\Debug\Ejercicios.csproj.CoreCompileInputs.cache
 D:\Desktop\VS code\C#\Ejercicios\obj\Debug\Ejercicios.exe
 D:\Desktop\VS code\C#\Ejercicios\obj\Debug\Ejercicios.pdb
+D:\Laptop\VS code\C-\Ejercicios\bin\Debug\Ejercicios.exe
+D:\Laptop\VS code\C-\Ejercicios\bin\Debug\Ejercicios.pdb
+D:\Laptop\VS code\C-\Ejercicios\obj\Debug\Ejercicios.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C-\Ejercicios\obj\Debug\Ejercicios.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C-\Ejercicios\obj\Debug\Ejercicios.exe
+D:\Laptop\VS code\C-\Ejercicios\obj\Debug\Ejercicios.pdb

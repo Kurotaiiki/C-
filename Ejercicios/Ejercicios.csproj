@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompararNumeros.cs" />
     <Compile Include="DatosEstudiante.cs" />
+    <Compile Include="list.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="OperacionesBasicas.cs" />
     <Compile Include="PedirDato.cs" />

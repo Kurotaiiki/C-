@@ -11,14 +11,13 @@ namespace Ejercicios
     {
         static void Main(string[] args)
         {
-
-            menu menu = new menu();
             bool ejecutar = true;
-            string[] opciones =new string[] {"Saludo","Datos del estudiante","Suma","Operaciones basicas","Comparar","Calculos","Cuadratica","Areas","Salario","Mayor de edad"};
-            int  opcion  = menu.Crear(opciones);
-            Clear();
+            string[] opciones = new string[] {"Saludo","Datos del estudiante","Suma","Operaciones basicas","Comparar","Calculos","Cuadratica","Areas","Salario","Mayor de edad"};
+            string[] opcionesFinal = new string[] {"Reiniciar","Salir"};
             while (ejecutar)
             {
+                int  opcion  = new Menu().Crear(opciones);
+                Clear();
                 switch (opcion)
                 {
                     case 1:
@@ -27,15 +26,49 @@ namespace Ejercicios
                     case 2:
                         new DatosEstudiante().Datos();
                         break;
-
-                    case 2:
-                        new OperacionesBasicas().Datos();
+                    case 3:
+                        new OperacionesBasicas().Suma();
                         break;
 
+                    case 4:
+                        new OperacionesBasicas().MostrarTodas();
+                        break;
+                    
+                    case 5:
+                        new CompararNumeros().Comparar();
+                        break;
+
+                    case 6:
+                        break;
+
+                    case 7:
+                        break;
+
+                    case 8:
+                        break;
+
+                    case 9:
+                        break;
+
+                    case 10:
+                        break;
                     default:
                         WriteLine("Por defecto");
                         break;
                 }
+
+                opcion = new Menu().Crear(opcionesFinal);
+                Clear();
+
+                switch(opcion)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        ejecutar = false;
+                        break;
+                }
+
             }
 
 

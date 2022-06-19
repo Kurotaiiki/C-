@@ -17,12 +17,12 @@ namespace Ejercicios
             
             return Console.ReadLine();
         }
-        public int Entero(string nombreDato, bool conNombre = true)
+        public int Entero(string nombreDato = "Nombre del Dato", bool conNombre = true)
         {
             int numero;
             if (conNombre)
             {
-                WriteLine($"Ingrese su {nombreDato}");
+                Write($"Ingrese su {nombreDato} :.");
             }
 
             while (!int.TryParse(ReadLine(),out numero))
@@ -32,12 +32,12 @@ namespace Ejercicios
 
             return numero;
         }
-        public double Doble(string nombreDato, bool conNombre = true)
+        public double Doble(string nombreDato = "Nombre del Dato", bool conNombre = true)
         {
             double numero;
             if (conNombre)
             {
-                WriteLine($"Ingrese su {nombreDato}");
+                WriteLine($"Ingrese su {nombreDato} :.");
             }
 
             while (!double.TryParse(ReadLine(), out numero))
