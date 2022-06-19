@@ -11,64 +11,31 @@ namespace Ejercicios
     {
         static void Main(string[] args)
         {
-            bool ejecutar = true;
-            string[] opciones = new string[] {"Saludo","Datos del estudiante","Suma","Operaciones basicas","Comparar","Calculos","Cuadratica","Areas","Salario","Mayor de edad"};
-            string[] opcionesFinal = new string[] {"Reiniciar","Salir"};
-            while (ejecutar)
+            CursorVisible = false;
+            Menu menu = new Menu();
+            Menu menu_salida = new Menu();
+            bool menu_exe = true;
+            int option;
+            menu.Create(new string[] { "Saludo", "Datos del estudiante", "Suma", "Operaciones basicas", "Comparar", "Calculos", "Cuadratica", "Areas", "Salario", "Mayor de edad" });
+            menu_salida.Create(new string[] { "Reiniciar", "Salir" }, false);
+
+
+            _Main(menu, out menu_exe, out option);
+
+            menu_salida.Prints();
+            do
             {
-                int  opcion  = new Menu().Crear(opciones);
-                Clear();
-                switch (opcion)
-                {
-                    case 1:
-                        new Saludo().Saludar();
-                        break;
-                    case 2:
-                        new DatosEstudiante().Datos();
-                        break;
-                    case 3:
-                        new OperacionesBasicas().Suma();
-                        break;
+                menu_exe = menu_salida.Button(ReadKey().Key.ToString());
+            } while (!menu_exe);
 
-                    case 4:
-                        new OperacionesBasicas().MostrarTodas();
-                        break;
-                    
-                    case 5:
-                        new CompararNumeros().Comparar();
-                        break;
-
-                    case 6:
-                        break;
-
-                    case 7:
-                        break;
-
-                    case 8:
-                        break;
-
-                    case 9:
-                        break;
-
-                    case 10:
-                        break;
-                    default:
-                        WriteLine("Por defecto");
-                        break;
-                }
-
-                opcion = new Menu().Crear(opcionesFinal);
-                Clear();
-
-                switch(opcion)
-                {
-                    case 1:
-                        break;
-                    case 2:
-                        ejecutar = false;
-                        break;
-                }
-
+            switch (option)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
             }
 
 
@@ -77,14 +44,57 @@ namespace Ejercicios
 
 
 
-
-
-
-
-
-
-
             ReadKey();
+        }
+
+        private static void _Main(Menu menu, out bool menu_exe, out int option)
+        {
+            do
+            {
+                menu_exe = menu.Button(ReadKey().Key.ToString());
+
+            } while (!menu_exe);
+            CursorVisible = true;
+            Clear();
+            option = menu.Select();
+            switch (option)
+            {
+                case 1:
+                    new Saludo().Saludar();
+                    break;
+                case 2:
+                    new DatosEstudiante().Datos();
+                    break;
+                case 3:
+                    new OperacionesBasicas().Suma();
+                    break;
+
+                case 4:
+                    new OperacionesBasicas().MostrarTodas();
+                    break;
+
+                case 5:
+                    new CompararNumeros().Comparar();
+                    break;
+
+                case 6:
+                    break;
+
+                case 7:
+                    break;
+
+                case 8:
+                    break;
+
+                case 9:
+                    break;
+
+                case 10:
+                    break;
+                default:
+                    WriteLine("Por defecto");
+                    break;
+            }
         }
     }
 }
