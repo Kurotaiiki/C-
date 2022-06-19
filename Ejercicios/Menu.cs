@@ -6,7 +6,7 @@ using static System.Console;
 
 namespace Ejercicios
 {
-    internal class menu
+    internal class Menu
     {
         List<string> list_opciones = new List<string>();
         public int Crear(Array nombreOpciones)

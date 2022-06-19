@@ -9,9 +9,9 @@ namespace Ejercicios
 {
     internal class OperacionesBasicas
     {
-        public double Suma(bool Ingresar,double a=0,double b=0)
+        public double Suma(bool Ingresar=false,double a=0,double b=0)
         {
-            if (!Ingresar)
+            if (Ingresar)
             {
                 return a + b;
             }
@@ -19,26 +19,27 @@ namespace Ejercicios
             return new PedirDato().Doble("numero 1") + new PedirDato().Doble("numero 2");
         }
 
-        public double Resta(bool Ingresar, double a = 0, double b = 0)
+        public double Resta(bool Ingresar = false, double a = 0, double b = 0)
         {
-            if (!Ingresar)
+            if (Ingresar)
             {
                 return a - b;
             }
             return new PedirDato().Doble("numero 1") + new PedirDato().Doble("numero 2");
         }
-        public double Multiplicacion(bool Ingresar, double a = 0, double b = 0)
+        public double Multiplicacion(bool Ingresar = false, double a = 0, double b = 0)
         {
-            if (!Ingresar)
+            if (Ingresar)
             {
                 return a * b;
             }
             return new PedirDato().Doble("numero 1") + new PedirDato().Doble("numero 2");
         }
-        public double Division(bool Ingresar, double a = 0, double b = 0)
+        public double Division(bool Ingresar = false, double a = 0, double b = 0)
         {
-            if (!Ingresar)
+            if (Ingresar)
             {
+
                 return a/ b;
             }
 
@@ -52,6 +53,27 @@ namespace Ejercicios
             return new PedirDato().Doble("numero 1") + new PedirDato().Doble("numero 2");
         }
 
-        
+        public void MostrarTodas()
+        {
+            double a = new PedirDato().Doble("numero 1");
+            double b = new PedirDato().Doble("numero 2");
+
+            WriteLine($"{a}+{b} = { Suma(true, a, b)}" );
+            WriteLine($"{a}-{b} = { Resta(true, a, b)}" );
+            WriteLine($"{a}x{b} = { Multiplicacion(true, a, b)}" );
+
+            if (b == 0)
+            {
+                WriteLine($"{a}/{b} = Syntaxis Error");
+            }
+            else
+            {
+                WriteLine($"{a}/{b} = {Suma(true, a, b)}");
+            }
+
+
+        }
+
+
     }
 }
