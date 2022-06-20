@@ -37,7 +37,7 @@ namespace Ejercicios
             double numero;
             if (conNombre)
             {
-                WriteLine($"Ingrese su {nombreDato} :.");
+                Write($"Ingrese su {nombreDato} :.");
             }
 
             while (!double.TryParse(ReadLine(), out numero))

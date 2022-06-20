@@ -9,214 +9,109 @@ namespace Ejercicios
 {
     internal class CompararNumeros
     {
-
+        static double[] arr_Numbers;
+        double minor, major,medium;
         public void Comparar()
         {
-            //variables fijas
-            double mayor;
-            double menor;
-            int medio;
-            double promedio = 0;
-
-
-            //Pedimos los datos
-            Write("cuantos numeros desea comparar :.");
-            int veces = new PedirDato().Entero("", false);
-
-            //Generamos el arreglo de numeros
-            double[] arr_numeros = new double[veces];
-
-            for (int i = 0; i < veces; i++)
-            {
-                Write($"Ingrese el numero {i + 1} :.");
-                arr_numeros[i] = new PedirDato().Doble("", false);
-            }
-
-            arr_numeros = _ordenar(arr_numeros,true);
-
-
-
-            //hallamos mayor y menor
-            mayor = _comparar(arr_numeros);
-            menor = _comparar(arr_numeros, "menor");
-            medio = arr_numeros.Length / 2;
-
-
-            //Sacamos el promedio
-            for (int i = 0; i < veces; i++)
-            {
-                promedio += arr_numeros[i];
-            }
-
-            _imprimir(mayor, menor, medio, arr_numeros,"ascendente");
-
+            Write("cunatos numeros desea comparar :.");
+            Generate(new PedirDato().Entero("", false));
 
         }
 
-        private static void _imprimir(double mayor, double menor, int medio, double[] arr_numeros,string orden)
+
+        ///--------------------------------------------------//
+        
+        
+        
+        
+        private void Generate(int veces)
         {
-            Write($"\n\n Lista {orden}\n|");
-            if (arr_numeros.Length % 2 != 0)
+            arr_Numbers = new double[veces];
+            for (int i = 0; i < veces; i++)
             {
-                for (int i = 0; i < arr_numeros.Length; i++)
+                arr_Numbers[i] = new PedirDato().Doble($"numero {i + 1}");
+            }
+            major = MajorAndMinor(arr_Numbers, true);
+            minor = MajorAndMinor(arr_Numbers, false);
+            Prints(major, minor);
+            WriteLine("\n\nAscendente");
+            Order(arr_Numbers,true);
+            WriteLine("\n\nDescendente");
+            Order(arr_Numbers, false );
+            ReadKey();
+        }
+
+        private void Order(double[] _arr_numbers,bool _major)
+        {
+            List<double> order = new List<double>();
+            List<double> clone = arr_Numbers.ToList<double>();
+            if (_major)
+            {
+                for (int i = 0; i < arr_Numbers.Length; i++)
                 {
-                    if (i == 0)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-
-
-
-                    }
-                    else if (i == medio)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                    }
-                    else if (i == arr_numeros.Length - 1)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-                        Write("|");
-                    }
-                    else
-                    {
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-                        Write($"|{arr_numeros[i]}|");
-                    }
-                    BackgroundColor = ConsoleColor.Black;
-                    ForegroundColor = ConsoleColor.White;
-
-
+                    double[] j = clone.ToArray();
+                    order.Add(MajorAndMinor(j, false));
+                    clone.Remove(MajorAndMinor(j, false));
 
                 }
-                WriteLine($"\n\n|Mayor {mayor}|| Menor {menor} || Medio {medio + 1}\n\n");
             }
             else
             {
-                for (int i = 0; i < arr_numeros.Length; i++)
+                for (int i = 0; i < arr_Numbers.Length; i++)
                 {
-                    if (i == 0)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-
-
-                    }
-                    else if (i == medio)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-                        Write("|");
-                    }
-                    else if (i == medio - 1)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-                        Write("|");
-                    }
-                    else if (i == arr_numeros.Length - 1)
-                    {
-                        BackgroundColor = ConsoleColor.White;
-                        ForegroundColor = ConsoleColor.Black;
-                        Write($"{arr_numeros[i]}");
-                        BackgroundColor = ConsoleColor.Black;
-                        ForegroundColor = ConsoleColor.White;
-
-                        Write("|");
-                    }
-                    else
-                    {
-
-                        Write($"|{arr_numeros[i]}|");
-                    }
-                    BackgroundColor = ConsoleColor.Black;
-                    ForegroundColor = ConsoleColor.White;
-
-
+                    double[] j = clone.ToArray();
+                    order.Add(MajorAndMinor(j,true));
+                    clone.Remove(MajorAndMinor(j, true));
 
                 }
-                WriteLine($"\n\nMayor {mayor}|| Menor {menor} || Medio {medio}<->{medio + 1}\n\n");
             }
+
+            for (int i = 0; i < clone.Count; i++)
+            {
+                Write($"|{clone[i]}");
+            }
+
+
+
+
+
+
+
+            
+
+
+
+
         }
 
-        private double _comparar(double[] arr_numeros,string mayorMenor="mayor")
+        private void Prints(double _major,double _minor)
         {
-            double menor = 1.8 * 100000000;
-            double mayor = -1.8 * 100000000;
-
-            for (int i = 0; i < arr_numeros.Length; i++)
-            {
-                if (arr_numeros[i] > mayor)
-                {
-                    mayor = arr_numeros[i];
-                }
-                if (arr_numeros[i] < menor)
-                {
-                    menor = arr_numeros[i];
-                }
-            }
-            if (mayorMenor=="mayor")
-            {
-                return mayor;
-            }
-
-            return menor;
+            
+            Console.WriteLine($"El numero mayor es {_major} y el menor es {_minor}");
         }
 
-        private double[] _ordenar(double[] arr_numeros,bool ascendente=true)
+        private static double MajorAndMinor(double[] _arr_Numbers,bool bool_major)
         {
-
-            List<double> list_numeros = arr_numeros.ToList<double>();
-            List<double> list_ordenada = new List<double>();
-
-            if (ascendente)
+            double _minor, _major;
+            _major = _arr_Numbers[0];
+            _minor = _arr_Numbers[0];
+            foreach (double number in _arr_Numbers)
             {
-             
-                for (int i = 0; i < arr_numeros.Length; i++)
+                if (number < _minor)
                 {
-                    for (int j = 0; i < list_numeros.Count; i++)
-                    {
-                        Write("entre "+ list_numeros.ToArray<double>() );
-                        list_ordenada.Add(_comparar(list_numeros.ToArray<double>(),"menor"));
-                        list_numeros.Remove(_comparar(list_numeros.ToArray<double>(),"menor"));
-                    }
-                    
+                    _minor = number;
                 }
-
-                
-            }
-            else
-            {
-                for (int i = 0; i < arr_numeros.Length; i++)
+                if (number > _major)
                 {
-                    double[] arr_temp = list_numeros.ToArray();
-                    list_numeros.Add(_comparar(arr_numeros));
+                    _major = number;
                 }
             }
-
-            return list_ordenada.ToArray();
+            if (bool_major)
+            {
+                return _major;
+            }
+            return _minor;
 
         }
-
-
-
     }
 }
