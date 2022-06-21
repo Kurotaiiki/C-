@@ -66,9 +66,9 @@ namespace Ejercicios
                 }
             }
 
-            for (int i = 0; i < clone.Count; i++)
+            for (int i = 0; i < order.Count; i++)
             {
-                Write($"|{clone[i]}");
+                Write($"|{order[i]}");
             }
 
 
