@@ -13,6 +13,7 @@ namespace Ejercicios
             if (conNombre)
             {
                 Write($"Ingrese su {nombreDato} .:");
+
             }
             
             return Console.ReadLine();
@@ -27,7 +28,11 @@ namespace Ejercicios
 
             while (!int.TryParse(ReadLine(),out numero))
             {
-                WriteLine("El dato ingresado no es valido");
+                WriteLine("El dato ingresado no es valido,unicamente pueden ser valores numericos enteros");
+                if (conNombre)
+                {
+                    Write($"Ingrese su {nombreDato} .:");
+                }
             }
 
             return numero;
@@ -42,7 +47,11 @@ namespace Ejercicios
 
             while (!double.TryParse(ReadLine(), out numero))
             {
-                WriteLine("El dato ingresado no es valido");
+                WriteLine("El dato ingresado no es valido unicamente pueden ser valores numericos(double)");
+                if (conNombre)
+                {
+                    Write($"Ingrese su {nombreDato} .:");
+                }
             }
 
             return numero;
@@ -57,7 +66,11 @@ namespace Ejercicios
 
             while (!float.TryParse(ReadLine(), out numero))
             {
-                WriteLine("El dato ingresado no es valido");
+                WriteLine("El dato ingresado no es valido unicamente pueden ser valores numericos(float)");
+                if (conNombre)
+                {
+                    Write($"Ingrese su {nombreDato} .:");
+                }
             }
 
             return numero;

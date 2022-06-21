@@ -33,15 +33,22 @@ namespace Ejercicios
             }
             major = MajorAndMinor(arr_Numbers, true);
             minor = MajorAndMinor(arr_Numbers, false);
-            Prints(major, minor);
+            arr_Numbers = Order(arr_Numbers, true);
+            if (veces%2==0)
+            {
+                Solution(major, minor, arr_Numbers[(veces/2)-1], arr_Numbers[(veces / 2)],true);
+            }
+            else
+            {
+                Solution(major, minor, arr_Numbers[(veces / 2)], arr_Numbers[(veces / 2)], false);
+            }
             WriteLine("\n\nAscendente");
-            Order(arr_Numbers,true);
+            Prints(arr_Numbers);
             WriteLine("\n\nDescendente");
-            Order(arr_Numbers, false );
-            ReadKey();
+            Prints(Order(arr_Numbers, false));
         }
 
-        private void Order(double[] _arr_numbers,bool _major)
+        private double[] Order(double[] _arr_numbers,bool _major)
         {
             List<double> order = new List<double>();
             List<double> clone = arr_Numbers.ToList<double>();
@@ -66,11 +73,7 @@ namespace Ejercicios
                 }
             }
 
-            for (int i = 0; i < order.Count; i++)
-            {
-                Write($"|{order[i]}");
-            }
-
+            return order.ToArray<double>();
 
 
 
@@ -84,10 +87,28 @@ namespace Ejercicios
 
         }
 
-        private void Prints(double _major,double _minor)
+        private void Solution(double _major,double _minor,double _mid=0,double _mid2=0,bool par=true)
         {
+            if (par)
+            {
+                Console.WriteLine($"\nEl numero mayor es {_major}, el menor es {_minor} y los medios al ser un numero par de elementos son {_mid}<->{_mid2}." +
+                                  $"\nLa diferencia entre el mayor y menor es {_major - _minor} ");
+            }
+            else
+            {
+                Console.WriteLine($"\nEl numero mayor es {_major}, el menor es {_minor} y el medio es {_mid}." +
+                $"\nLa diferencia entre el mayor y el menor es {_major - _minor} ");
+            }
             
-            Console.WriteLine($"El numero mayor es {_major} y el menor es {_minor} y su diferencia es {_major-_minor}");
+        }
+
+        private void Prints(double[] arr_numbers)
+        {
+            foreach (double item in arr_numbers)
+            {
+                Write($"|{item}");
+            }
+            Write("|");
         }
 
         private static double MajorAndMinor(double[] _arr_Numbers,bool bool_major)

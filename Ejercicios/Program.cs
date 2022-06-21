@@ -86,9 +86,11 @@ namespace Ejercicios
                     break;
 
                 case 9:
+                    new Salario().Calculate();
                     break;
 
                 case 10:
+                    new Edades().Calculate();
                     break;
                 default:
                     WriteLine("Por defecto");
