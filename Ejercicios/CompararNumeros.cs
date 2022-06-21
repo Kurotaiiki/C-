@@ -75,16 +75,6 @@ namespace Ejercicios
 
             return order.ToArray<double>();
 
-
-
-
-
-
-            
-
-
-
-
         }
 
         private void Solution(double _major,double _minor,double _mid=0,double _mid2=0,bool par=true)

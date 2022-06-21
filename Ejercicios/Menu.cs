@@ -12,16 +12,16 @@ namespace Ejercicios
         private int restart = 1;
         private string[] arr_options;
 
-
-
         public void Create(Array options, bool print = true)
         {
-            List<string> list_opciones = new List<string>();
+            List<string> list_options = new List<string>();
+
+
             foreach (string op in options)
             {
-                list_opciones.Add(op);
+                list_options.Add(op);
             }
-            arr_options = list_opciones.ToArray();
+            arr_options = list_options.ToArray();
             restart = arr_options.Length;
             if (print)
             {
@@ -30,7 +30,6 @@ namespace Ejercicios
 
         }
 
-        //Pushhhhhh
 
         public void Prints(bool Clean=true)
         {

@@ -19,7 +19,7 @@ namespace Ejercicios
         public void Create()
         {
             menu.Create(new string[] { "Triangulo", "Rombo", "Elipse" }, false);
-            menu_salida.Create(new string[] { "Reiniciar", "Salir" }, false);
+            menu_salida.Create(new string[] { "Volver a calcular un area", "Salir" }, false);
             menu_Diamond.Create(new string[] { "Base y altura", "Lado y angulo" }, false);
 
 
