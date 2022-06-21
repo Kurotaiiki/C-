@@ -11,7 +11,7 @@ namespace Ejercicios
     {
         public void Saludar()
         {
-            string nombre = new PedirDato().Texto("nombre");
+            string nombre = new PedirDato().StringDate("nombre");
             string mensaje = "Buenos dias ";
             WriteLine($"{mensaje}{nombre}");
         }

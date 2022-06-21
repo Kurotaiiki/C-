@@ -32,11 +32,14 @@ namespace Ejercicios
 
         //Pushhhhhh
 
-        public void Prints()
+        public void Prints(bool Clean=true)
         {
 
             int i = 1;
-            Clear();
+            if (Clean)
+            {
+                Clear();
+            }            
             WriteLine("Escoja la opcion deseada");
 
             foreach (string option_txt in arr_options)

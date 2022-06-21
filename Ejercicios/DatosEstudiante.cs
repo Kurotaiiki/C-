@@ -10,12 +10,12 @@ namespace Ejercicios
     {
         public void Datos()
         {
-            string nombre = new PedirDato().Texto("nombre");
-            string apellido = new PedirDato().Texto("apellido");
-            string direccion = new PedirDato().Texto("direccion");
-            string ciudad = new PedirDato().Texto("ciudad");
-            string cedula = new PedirDato().Texto("cedula");
-            string edad = new PedirDato().Texto("edad");
+            string nombre = new PedirDato().StringDate("nombre");
+            string apellido = new PedirDato().StringDate("apellido");
+            string direccion = new PedirDato().StringDate("direccion");
+            string ciudad = new PedirDato().StringDate("ciudad");
+            string cedula = new PedirDato().StringDate("cedula");
+            string edad = new PedirDato().StringDate("edad");
 
             WriteLine("");
         } 

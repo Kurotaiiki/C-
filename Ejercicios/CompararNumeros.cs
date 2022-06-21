@@ -10,11 +10,11 @@ namespace Ejercicios
     internal class CompararNumeros
     {
         static double[] arr_Numbers;
-        double minor, major,medium;
+        double minor, major;
         public void Comparar()
         {
             Write("cunatos numeros desea comparar :.");
-            Generate(new PedirDato().Entero("", false));
+            Generate(new PedirDato().IntDate("", false));
 
         }
 
@@ -29,7 +29,7 @@ namespace Ejercicios
             arr_Numbers = new double[veces];
             for (int i = 0; i < veces; i++)
             {
-                arr_Numbers[i] = new PedirDato().Doble($"numero {i + 1}");
+                arr_Numbers[i] = new PedirDato().DoubleDate($"numero {i + 1}");
             }
             major = MajorAndMinor(arr_Numbers, true);
             minor = MajorAndMinor(arr_Numbers, false);
@@ -87,7 +87,7 @@ namespace Ejercicios
         private void Prints(double _major,double _minor)
         {
             
-            Console.WriteLine($"El numero mayor es {_major} y el menor es {_minor}");
+            Console.WriteLine($"El numero mayor es {_major} y el menor es {_minor} y su diferencia es {_major-_minor}");
         }
 
         private static double MajorAndMinor(double[] _arr_Numbers,bool bool_major)
