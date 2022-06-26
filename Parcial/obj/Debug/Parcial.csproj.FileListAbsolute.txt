@@ -1,0 +1,6 @@
+D:\Desktop\VS code\C#\Parcial\bin\Debug\Parcial.exe
+D:\Desktop\VS code\C#\Parcial\bin\Debug\Parcial.pdb
+D:\Desktop\VS code\C#\Parcial\obj\Debug\Parcial.csproj.AssemblyReference.cache
+D:\Desktop\VS code\C#\Parcial\obj\Debug\Parcial.csproj.CoreCompileInputs.cache
+D:\Desktop\VS code\C#\Parcial\obj\Debug\Parcial.exe
+D:\Desktop\VS code\C#\Parcial\obj\Debug\Parcial.pdb
