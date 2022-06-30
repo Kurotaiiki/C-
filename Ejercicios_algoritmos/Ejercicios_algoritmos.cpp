@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+//#include <cstdio>
+#include <wchar.h>
 using namespace std;
 
 
@@ -179,13 +181,25 @@ void Age()
 	int day;
 	int years;
 
-	cout << "Ingese el dia de nacimiento";
-	cin >> day;
-	cout << "Ingese el numero del mes de nacimiento";
-	cout << "1.Enero\t\t7.Julio\n2.Febrero\t\t8.Agosto\n3.Marzo\t\t9.Septiembre\n4.Abril\t\t10.Octubre\n5.Mayo\t\t11.Noviembre\n6.Junio\t\t12.Diciembre";
-	cin >> month;
-	cout << "Ingese el año de nacimiento";
+	cout << "Ingese el año de nacimiento .:";
 	cin >> year;
+
+	cout << "Ingese el numero del mes de nacimiento";
+	
+	cout << "\n1.Enero\t\t7.Julio\n2.Febrero\t8.Agosto\n3.Marzo\t\t9.Septiembre\n4.Abril\t\t10.Octubre\n5.Mayo\t\t11.Noviembre\n6.Junio\t\t12.Diciembre\n.:";
+	cin >> month;
+
+	while (month < 1 || month >12) {
+		cout << "Recuerde sus opciones";
+		cout << "\n1.Enero\t\t7.Julio\n2.Febrero\t8.Agosto\n3.Marzo\t\t9.Septiembre\n4.Abril\t\t10.Octubre\n5.Mayo\t\t11.Noviembre\n6.Junio\t\t12.Diciembre\n.:";
+
+		cin >> month;
+	} 
+
+	printf("Ingrese su dia de naciemiento, reecuerde que maximo puede ser %d ", months[month-1]);
+
+
+	
 
 	if (month=2)
 	{
@@ -209,27 +223,22 @@ void Age()
 }
 
 
-
-
-
-
-
-
 int main()
 {
-	int a;
+	/*int a;
 	cout << "Ingrese el numero a comparar .:";
 	cin >> a;
-    MajorMinor(a);
+    MajorMinor(a);*/
 
-	Pair(a);
+	/*Pair(a);
 	Print(false);
 	Print(true);
 	Average();
 	multiples();
 	MajorMinor();
 	Summation();
-	Sum();
+	Sum();*/
+	Age();
     system("pause");
 }
 

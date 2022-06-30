@@ -1,0 +1,6 @@
+D:\Desktop\VS code\C#\MyUtilitys\bin\Debug\MyUtilitys.exe
+D:\Desktop\VS code\C#\MyUtilitys\bin\Debug\MyUtilitys.pdb
+D:\Desktop\VS code\C#\MyUtilitys\obj\Debug\MyUtilitys.csproj.AssemblyReference.cache
+D:\Desktop\VS code\C#\MyUtilitys\obj\Debug\MyUtilitys.csproj.CoreCompileInputs.cache
+D:\Desktop\VS code\C#\MyUtilitys\obj\Debug\MyUtilitys.exe
+D:\Desktop\VS code\C#\MyUtilitys\obj\Debug\MyUtilitys.pdb

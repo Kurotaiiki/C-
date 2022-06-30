@@ -1,2 +1,4 @@
 ﻿  Ejercicios_algoritmos.cpp
-  Ejercicios_algoritmos.vcxproj -> D:\Laptop\VS code\C++\Ejercicios_algoritmos\x64\Debug\Ejercicios_algoritmos.exe
+D:\Desktop\VS code\C#\Ejercicios_algoritmos\Ejercicios_algoritmos.cpp(181,6): warning C4101: 'day': variable local sin referencia
+D:\Desktop\VS code\C#\Ejercicios_algoritmos\Ejercicios_algoritmos.cpp(182,6): warning C4101: 'years': variable local sin referencia
+  Ejercicios_algoritmos.vcxproj -> D:\Desktop\VS code\C#\Ejercicios_algoritmos\x64\Debug\Ejercicios_algoritmos.exe
