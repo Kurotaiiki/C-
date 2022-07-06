@@ -13,6 +13,7 @@ namespace CRUD
         private int restart = 1;
         private bool menu_exe = false;
         private string[] arr_options;
+        private int[] position;
 
         public void Create(Array options, bool print = true)
         {
@@ -38,53 +39,62 @@ namespace CRUD
         }
 
 
-        public void Button()
+        public void Execute_menu(bool clean = true)
         {
+            Write("\n\n");
             string button;
-            Prints();
+            Prints(clean);
             do
             {
+                CursorVisible = false;
                 button = ReadKey().Key.ToString();
                 switch (button)
                 {
                     case "DownArrow":
-                        Change("Down");
+                        Change("Down",clean);
                         break;
                     case "UpArrow":
-                        Change("Up");
+                        Change("Up",clean);
                         break;
                     case "Enter":
-                        
+                        SetCursorPosition(0, CursorTop + arr_options.Length+2);
                         menu_exe = true;
+                        break;
+                    default:
+                        Prints(clean);
                         break;
                 }
 
+
             } while (!menu_exe);
+            CursorVisible = true;
             menu_exe=false;
         }
 
 
 
+        
 
 
 
-
-        private void Prints(bool Clean = true)
+        private void Prints(bool clean = true)
         {
 
             int i = 1;
-            if (Clean)
+            if (clean)
             {
                 Clear();
             }
-            WriteLine("Escoja la opcion deseada");
 
+            position = new int[] {0,CursorTop};
+            SetCursorPosition(0, position[1]);
+            WriteLine("Escoja la opcion deseada");
             foreach (string option_txt in arr_options)
             {
 
                 if (i != selector)
                 {
-                    WriteLine($"{i}.{option_txt}");
+                    WriteLine($"{i}.{option_txt}    ");
                 }
                 else
                 {
@@ -95,9 +105,14 @@ namespace CRUD
                 }
                 i++;
             }
+            if (!clean)
+            {
+                SetCursorPosition(0, position[1]);
+            }
+
         }
 
-        private void Change(string arrow)
+        private void Change(string arrow,bool clean)
         {
             if (arrow == "Down")
             {
@@ -117,7 +132,7 @@ namespace CRUD
             {
                 selector = restart;
             }
-            Prints();
+            Prints(clean);
         }
 
         private void decorator(bool open = true)
