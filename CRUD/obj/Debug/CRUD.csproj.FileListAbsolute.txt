@@ -1,0 +1,8 @@
+D:\Laptop\VS code\C#\CRUD\bin\Debug\CRUD.exe.config
+D:\Laptop\VS code\C#\CRUD\bin\Debug\CRUD.exe
+D:\Laptop\VS code\C#\CRUD\bin\Debug\CRUD.pdb
+D:\Laptop\VS code\C#\CRUD\obj\Debug\CRUD.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C#\CRUD\obj\Debug\CRUD.csproj.SuggestedBindingRedirects.cache
+D:\Laptop\VS code\C#\CRUD\obj\Debug\CRUD.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C#\CRUD\obj\Debug\CRUD.exe
+D:\Laptop\VS code\C#\CRUD\obj\Debug\CRUD.pdb
