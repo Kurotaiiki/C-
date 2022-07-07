@@ -12,7 +12,6 @@ namespace CRUD
     internal class Program
     {
         static OracleConnection ora = new OracleConnection("DATA SOURCE = xe ; PASSWORD=123;USER ID=pruebaUsuario;");
-        static DataTable table = new DataTable();
         static string txt;
         static string cont;
         static int id;
@@ -25,43 +24,42 @@ namespace CRUD
         {
 
             ora.Close();
-            InitDB();
-
-
-
+            DataTable table = InitDB();
             Menu menu = new Menu();
             Menu campo = new Menu();
-            menu.Create(new string[] { "Modificar", "Salir" }, false);
-            campo.Create(new string[] { "Nombre", "Contrasenia", "volver al menu" }, false);
+            menu.Create(new string[] { "Modificar","Egregar","Eliminar", "Salir" }, false);
+            campo.Create(new string[] { "Nombre", "Contrasenia","id", "volver al menu" }, false);
 
             do
             {
                 Clear();
-                PrintDB();
+                PrintDB(ref table);
                 menu.Execute_menu(false);
                 option = menu.Select();
 
                 switch (option)
                 {
                     case 1:
-                        ModifyDB(campo);
+                        ModifyDB(campo, ref table);
+                        UpdateDB(ref table);
                         break;
                     case 2:
-
+                        AddDB(ref table);
+                        UpdateDB(ref table);
                         break;
                     case 3:
-
+                        DeleteDB(ref table);
                         break;
                     case 4:
                         break;
                 }
 
             } while (option != 4);
-            ReadKey();
         }
 
         static DataTable InitDB()
         {
+            DataTable table = new DataTable();
             ora.Open();
             OracleCommand command = new OracleCommand("seleccionarPersonas", ora);
             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -74,29 +72,42 @@ namespace CRUD
 
             return table;
         }
-        static void PrintDB()
+        static void PrintDB(ref DataTable table)
         {
+            WriteLine("||ID  \t||NOMBRE  \t||PASSWORD  \t||");
+            Write("||//////////////////////////////////////||\n");
             foreach (DataRow row in table.Rows)
             {
-                WriteLine($"||{row["id"]}  \t|{row["nombre"]}   \t|{row["contrasenia"]}  \t||");
+                WriteLine($"||{row["id"]}  \t||{row["nombre"]}   \t||{row["contrasenia"]}  \t||");
             }
+            Write("||//////////////////////////////////////||\n");
         }
 
-        static void ModifyDB(Menu campo)
+        static void ModifyDB(Menu campo, ref DataTable table)
         {
+            bool exe = false;
+
             do
             {
+
                 Write("Ingrese el ID del usuario a modificar .:                    ");
                 SetCursorPosition(CursorLeft - 20, CursorTop);
-                id = (myInput.IntData(false)) - 1;
+                id = (myInput.IntData(false));
 
-                if (id < 0 || id >= table.Rows.Count)
+                foreach (DataRow row in table.Rows)
                 {
-                    Write("ID FUERA DE RANGO");
+                    if (row["id"].ToString() == id.ToString())
+                    {
+                        exe = true;
+                    }
+                }
+                if (!exe)
+                {
+                    Write("ID NO EXISTE");
                     SetCursorPosition(0, CursorTop - 1);
                 }
 
-            } while (id < 0 || id >= table.Rows.Count);
+            } while (!exe);
 
 
             campo.Execute_menu(false);
@@ -105,60 +116,123 @@ namespace CRUD
             switch (option)
             {
                 case 1:
-                    table.Rows[id]["nombre"] = myInput.StrData(true, "nombre del usuario", true, 6, 20);
+                    foreach (DataRow row in table.Rows)
+                    {
+                        if (row["id"].ToString() == id.ToString())
+                        {
+                            row["nombre"] = myInput.StrData(true, "nuevo nombre del usuario .:", true, 6, 30);
+                        }
+                    }
                     break;
                 case 2:
-                    table.Rows[id]["contrasenia"] = myInput.IntData(true, "password del usuario .:", true, 8, 8);
+                    foreach (DataRow row in table.Rows)
+                    {
+                        if (row["id"].ToString() == id.ToString())
+                        {
+                            row["contrasenia"] = myInput.StrData(true, "password del usuario .:", true, 8, 8);
+                        }
+                    }
+                    break;
+                case 3:
+
+                    int i=0;
+                    int tempID=0;
+                    exe = false;
+                    do
+                    {
+
+                        Write("Ingrese el nuevo ID.:                    ");
+                        SetCursorPosition(CursorLeft - 20, CursorTop);
+                        tempID = (myInput.IntData(false));
+
+                        foreach (DataRow row in table.Rows)
+                        {
+                            if (row["id"].ToString() == tempID.ToString())
+                            {
+                                i++;
+                            }
+                        }
+                        if (i>0)
+                        {
+                            Write("ID YA EXISTE");
+                            SetCursorPosition(0, CursorTop - 1);
+                            i = 0;
+                        }
+                        else
+                        {
+                            exe = true;
+                        }
+
+                    } while (!exe);
+
+
+
+
+                    foreach (DataRow row in table.Rows)
+                    {
+                        if (row["id"].ToString() == id.ToString())
+                        {
+                            row["id"] = tempID;
+                        }
+                    }
                     break;
                 default:
                     break;
             }
         }
 
+        static void AddDB(ref DataTable table)
+        {
+            DataRow row=table.NewRow();
+            
+            row["id"] = ++id;
+            row["nombre"] = myInput.StrData(true, "nombre del usuario", true, 6, 20);
+            row["contrasenia"] = myInput.IntData(true, "password del usuario .:", true, 8, 8);
+            table.Rows.Add(row);
 
-        //static void Connect(bool on=true)
-        //{
+        }
 
-        //    if (on)
-        //    {
-        //        ora.Open();
-        //        WriteLine("conectado");
-        //    }
-        //    else
-        //    {
-        //        ora.Close();
-        //        WriteLine("desconectado");
-        //    }
-        //}
+        static void DeleteDB(ref DataTable table)
+        {
+            bool exe= false;
 
-        //static void WriteDB()
-        //{
-        //    try
-        //    {
-        //        Connect();
-        //        OracleCommand command = new OracleCommand("insertar", ora);
-        //        command.CommandType = System.Data.CommandType.StoredProcedure;
-        //        Write("Ingrese el nombre que desea agregar .:");
-        //        txt = ReadLine();
-        //        command.Parameters.Add("nom", OracleType.VarChar).Value = txt;
-        //        Write("Cree la contrasena.:");
-        //        cont = ReadLine();
-        //        command.Parameters.Add("cont", OracleType.VarChar).Value = cont;
-        //        command.ExecuteNonQuery();
-        //        Write("Persona insertada");
-        //        UpdateDB();
+            do {
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Write("NO SE PUDO INSERTAR");
-        //    }
+                Write("Ingrese el ID del usuario a eliminar .:                    ");
+                SetCursorPosition(CursorLeft - 20, CursorTop);
+                id = (myInput.IntData(false));
+                List<object> ids = new List<object>();
 
-        //    Connect(false);
+                foreach (DataRow row in table.Rows)
+                {
+                    if (row["id"].ToString() == id.ToString())
+                    {
+                        exe = true;
+                    }
+                }
+                if(!exe)
+                {
+                    Write("ID NO EXISTE");
+                    SetCursorPosition(0, CursorTop - 1);
+                }
 
-        //}
+            }while (!exe);
 
-        static void UpdateDB(bool mod = false)
+            
+            ora.Open();
+            OracleCommand command = new OracleCommand("eliminar", ora);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("idp", OracleType.Number).Value = id;
+            command.ExecuteNonQuery();
+
+            ora.Close();
+            table = InitDB();
+
+        }
+
+
+
+        static void UpdateDB(ref DataTable table)
         {
             ora.Open();
             foreach (DataRow row in table.Rows)
@@ -166,13 +240,11 @@ namespace CRUD
                 OracleCommand command = new OracleCommand("actualizar", ora);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.Add("idp", OracleType.Number).Value = row["id"];
-                command.Parameters.Add("nom", OracleType.VarChar).Value = txt;
-                command.Parameters.Add("cont", OracleType.VarChar).Value = cont;
-                command.ExecuteNonQuery();
-                Write("actualizada");
-                ora.Close();
+                command.Parameters.Add("nom", OracleType.VarChar).Value = row["nombre"];
+                command.Parameters.Add("cont", OracleType.VarChar).Value = row["contrasenia"];
+                command.ExecuteNonQuery();               
             }
-
+            ora.Close();
         }
     }
 }
