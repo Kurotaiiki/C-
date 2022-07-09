@@ -6,3 +6,11 @@ C:\Users\Kuro\Desktop\Ejercicios_arrglos\Ejercicios_arrglos\bin\Debug\Ejercicios
 C:\Users\Kuro\Desktop\Ejercicios_arrglos\Ejercicios_arrglos\bin\Debug\Ejercicios_arrglos.pdb
 C:\Users\Kuro\Desktop\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.exe
 C:\Users\Kuro\Desktop\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.pdb
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\bin\Debug\Ejercicios_arrglos.exe.config
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\bin\Debug\Ejercicios_arrglos.exe
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\bin\Debug\Ejercicios_arrglos.pdb
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.csproj.SuggestedBindingRedirects.cache
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.exe
+D:\Laptop\VS code\C#\Ejercicios_arrglos\Ejercicios_arrglos\obj\Debug\Ejercicios_arrglos.pdb
