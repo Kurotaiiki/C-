@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <iomanip>
 using namespace std;
 
@@ -86,6 +87,82 @@ double Catalogue::Price(int _index)
 
 #pragma endregion
 
+#pragma region Cliente
+
+
+class Client
+{
+public:
+    Client(Catalogue);
+    bool Buy(int, int);
+    string GetCredit();
+    string GetDebit();
+    double GetNumCredit();
+    bool startBuy = false;
+    void AddCart(int, int);
+    int cart[20];
+
+private:
+    int id;
+    string address;
+    Catalogue catalogue;
+    double debt;
+    double credit = 0;
+
+};
+
+Client::Client(Catalogue _catalogue)
+{
+    catalogue = _catalogue;
+    debt = 0;
+
+    cout << "Cual es su id ->";
+    cin >> id;
+
+    cout << "Cual es su Direccion ->";
+    cin >> address;
+
+    cout << "Cual es el cupo de su tarjeta ->";
+    cin >> credit;
+
+    for (int i = 0; i < 20; i++)
+    {
+        cart[i] = 0;
+    }
+
+
+}
+bool Client::Buy(int _index, int _units)
+{
+    startBuy = true;
+    catalogue.Find(_index);
+
+    if (credit - (_units * catalogue.Price(_index)) < 0)
+    {
+        return false;
+    }
+
+    credit -= _units * catalogue.Price(_index);
+    return true;
+}
+
+string Client::GetCredit()
+{
+    string txt = "";
+    txt += printf("\nCUPO ACTUAL DE SU TARJETA |>|%.0lf|<|\n\n",credit);
+    return txt;
+}
+double Client::GetNumCredit()
+{
+    double txt ;
+    txt = credit;
+    return txt;
+}
+
+
+#pragma endregion
+
+
 #pragma region Tienda
 
 class Store
@@ -94,9 +171,11 @@ public:
     Store(string,string, Catalogue,int _u[]);
     int stock[20];
     void Show(bool);
-    bool Sell(int _id, int _units, string& _message, Store& b, Store& c, Store& d, int& option);
+    bool Sell(int _id, int _units, string& _message, Store& b, Store& c, Store& d, int& option, Client& client);
     int Id(int);
     string ShowName();
+    void Facture(Client, Catalogue);
+
 
 private:
     string city;
@@ -142,10 +221,10 @@ void Store::Show(bool less)
     cout << setw(75) << setfill('-') << '\n' << setfill(' ') << endl;
 }
 
-bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Store& d, int& option)
+bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Store& d, int& option, Client& client)
 {
     int _index = _id;
-    string stores = "";    
+    string stores = ""; 
 
     if (!catalogue.Find(_index))
     {
@@ -192,63 +271,39 @@ bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Stor
 
     else
     {
-        stock[_index] -= _units;
-        option = 0;
+        if (client.Buy(_index, _units))
+        {
+            
+            stock[_index] -= _units;
+            client.cart[_index] += _units;
+            option = 0;
+
+            
+
+        }
+        else
+        {
+            cout << "\n||No te alcanza el cupo de la tarjeta||\n";
+        }
         return true;
+
+    }
+}
+
+void Store::Facture(Client _client,Catalogue _catalog)
+{
+    
+    for (int i = 0; i < 20; i++)
+    {
+        if (_client.cart[i] > 0)
+        {
+            cout <<" CArrito |"<< _client.cart[i]<<"||" << _catalog.ids[i] << "->" << _catalog.names[i] << "->" << _catalog.prices[i] << "->" << _catalog.prices[i] * _client.cart[i] << endl;
+        }
     }
 }
 
 #pragma endregion
 
-class Client
-{
-public:
-    Client(Catalogue);
-    bool Buy(int, int);
-    bool startBuy = false;
-
-
-
-private:
-    int id;
-    string address;
-    Catalogue catalogue;
-    double debt;
-    double credit;
-    int cart[20];
-
-};
-
-Client::Client(Catalogue _catalogue)
-{
-    catalogue = _catalogue;
-    debt = 0;
-
-    cout << "Cual es su id ->";
-    cin >> id;
-
-    cout << "Cual es su Direccion ->";
-    cin >> address ;
-
-    cout << "Cual es el cupo de su tarjeta ->";
-    cin >> credit;
-    
-}
-bool Client::Buy(int _index, int _units) 
-{
-    startBuy = true;
-    catalogue.Find(_index);    
-
-    if (credit - _units*catalogue.Price(_index) < 0)
-    {
-        return false;
-    }
-
-    credit -= _units * catalogue.Price(_index);
-    cart[_index] += _units;
-    
-    return true;
-}
 
 
 
@@ -316,16 +371,16 @@ int main()
                         a.Show(false);
                         Buy(a, c, b, d, client);
 
-                        cout << "\n1.Si desea salir\n2.Si desea seguir comprando\n->";
+                        cout << "\n1.Si desea seguir comprando\n2.Si desea salir\n->";
                         cin >> option;
 
                         switch (option)
                         {
                         case 1:
-                            option = 3;
                             break;
                         case 2:
-                            
+                            a.Facture(client, my_cat);
+                            option = 3;
                             break;
                         default:
                             cout << "\nFUERA DEL RANGO PERMITIDO\n";
@@ -335,7 +390,6 @@ int main()
                         }
 
                     } while (option != 3);
-
                     break;
                 case 2:
                     option = 3;
@@ -415,11 +469,12 @@ int main()
         }
         if (!client.startBuy)
         {
-            cout << "holi";
+
             system("pause");
             option = 0;
         }
     } while (option != 3);
+
 
     system("pause");
 
@@ -465,38 +520,47 @@ void Buy(Store& current, Store& b, Store& c, Store& d,Client &_client)
     string message;
     int check;
 
-    cout << "Ingrese el ID del producto que desea comprar ->";
-    cin >> id;
+    
 
-    cout << "Ingrese la cantidad que desea ->";
-    cin >> units;
-
-    while (!current.Sell(id, units, message, b, c, d, check))
+    if (_client.GetNumCredit() > 0)
     {
-        system("cls");
-        current.Show(true);
-        if (check == 1)
+        cout << _client.GetCredit();
+
+        cout << "Ingrese el ID del producto que desea comprar ->";
+        cin >> id;
+
+        cout << "Ingrese la cantidad que desea ->";
+        cin >> units;
+
+        while (!current.Sell(id, units, message, b, c, d, check, _client))
         {
-            cout << message;
+            system("cls");
+            current.Show(true);
+            if (check == 1)
+            {
+                cout << message;
 
-            cout << " \nIngrese el ID del producto que desea comprar ->";
-            cin >> id;
+                cout << " \nIngrese el ID del producto que desea comprar ->";
+                cin >> id;
 
-            cout << "\nIngrese la cantidad que desea ->";
-            cin >> units;
-        }
-        else if (check == 2)
-        {
-            cout << message;
-            cin >> units;
+                cout << "\nIngrese la cantidad que desea ->";
+                cin >> units;
+            }
+            else if (check == 2)
+            {
+                cout << message;
+                cin >> units;
 
-            cout << "\nIngrese el ID del producto que desea comprar ->";
-            cin >> id;
-
+                cout << "\nIngrese el ID del producto que desea comprar ->";
+                cin >> id;
+            }
         }
     }
-
-    _client.Buy(id,units);
-
+    else
+    {
+        _client.startBuy = true;
+        cout << "No dispones de mas credito";
+    }
+    
 }
 
