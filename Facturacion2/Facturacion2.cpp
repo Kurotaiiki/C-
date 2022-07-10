@@ -70,7 +70,7 @@ void Catalogue::Prints(int _index,int _units)
     }
     else
     {
-        cout << "\x1B[31m" << left << setfill('.') << " | " << right << setw(5) << ids[_index] << left << " | " << setw(20) << names[_index] << " | " << setw(15) << distributors[_index] << " | " << setw(25) << descriptions[_index] << " | " << right << setw(8) << _units << " | " << right << fixed << setprecision(0) << setw(15) << prices[_index] << " | " << "\x1B[30m" << endl;
+        cout << "\x1B[31m" << left << setfill('.') << " | " << right << setw(5) << ids[_index] << left << " | " << setw(20) << names[_index] << " | " << setw(15) << distributors[_index] << " | " << setw(25) << descriptions[_index] << " | " << right << setw(8) << _units << " | " << right << fixed << setprecision(0) << setw(15) << prices[_index] << " | " << "\x1B[37m" << endl;
     }
 }
 void Catalogue::PrintsLess(int _index,int _units)
@@ -95,18 +95,17 @@ class Client
 public:
     Client(Catalogue);
     bool Buy(int, int);
-    string GetCredit();
     string GetDebit();
     double GetNumCredit();
     bool startBuy = false;
     void AddCart(int, int);
     int cart[20];
-
-private:
     int id;
     string address;
+
+private:
+    
     Catalogue catalogue;
-    double debt;
     double credit = 0;
 
 };
@@ -114,13 +113,15 @@ private:
 Client::Client(Catalogue _catalogue)
 {
     catalogue = _catalogue;
-    debt = 0;
 
     cout << "Cual es su id ->";
     cin >> id;
 
     cout << "Cual es su Direccion ->";
-    cin >> address;
+    cin.clear();
+    cin.ignore();
+    getline(cin, address);
+
 
     cout << "Cual es el cupo de su tarjeta ->";
     cin >> credit;
@@ -141,22 +142,27 @@ bool Client::Buy(int _index, int _units)
     {
         return false;
     }
-
-    credit -= _units * catalogue.Price(_index);
-    return true;
+    
+    if (catalogue.ids[_index] >= 2000 && catalogue.ids[_index] <= 3000)
+    {
+        credit -= (_units * catalogue.Price(_index))*0.8;
+        cout << "\nPRODUCTO DEL HOGAR CON 20% DE DESCUENTO\n";
+        return true;
+    }
+    else
+    {
+        credit -= _units * catalogue.Price(_index);
+        return true;
+    }
+    
 }
 
-string Client::GetCredit()
-{
-    string txt = "";
-    txt += printf("\nCUPO ACTUAL DE SU TARJETA |>|%.0lf|<|\n\n",credit);
-    return txt;
-}
+
 double Client::GetNumCredit()
 {
-    double txt ;
-    txt = credit;
-    return txt;
+    double num ;
+    num = credit;
+    return num;
 }
 
 
@@ -224,6 +230,7 @@ void Store::Show(bool less)
 bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Store& d, int& option, Client& client)
 {
     int _index = _id;
+    _message = ""; 
     string stores = ""; 
 
     if (!catalogue.Find(_index))
@@ -290,16 +297,80 @@ bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Stor
     }
 }
 
-void Store::Facture(Client _client,Catalogue _catalog)
+void Store::Facture(Client _client, Catalogue _catalog)
 {
+    double total = 0;
+    double discount = 0;
+    string products = "";
+    string message = "";
+    system("cls");
+
+
     
+
+
+    cout << "\x1B[36m" << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+
+    cout << left << "\x1B[36m|" << right << setw(30) << setfill('.') << "|\x1B[37m" << setw(18) << right << setfill('.') << "Facturacion" << setw(18) << right
+         << "\x1B[36m|" << setw(35) << setfill('.') << right << "|\n";
+
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+
+    cout << left << "|\x1B[36m" << right << setw(30) << setfill('.') << "|\x1B[37m" << setw(13) << right << setfill('.') << city << "\x1B[36m|\x1B[37m" << setw(16) << left
+         << setfill('.') << zone << left << "\x1B[36m|" << setw(35) << setfill('.') << right << "|\n";
+
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+
+    cout << left << setfill('.') << "|" << right << setw(8) << "\x1B[37m" << "ID" << "\x1B[36m" << "|" << setw(5) << "\x1B[37m" << "Unidades" << "\x1B[36m" << "|" << setw(20) << left << "\x1B[37m" << "Producto" << "\x1B[36m"
+         << "|\x1B[37m" << setw(16) <<right << "Vlr unitario" << "\x1B[36m" << "|\x1B[37m" << setw(29) <<right << "\x1B[37m" << "Vlr total" << right << "\x1B[36m|" << endl;
+
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+
     for (int i = 0; i < 20; i++)
     {
         if (_client.cart[i] > 0)
         {
-            cout <<" CArrito |"<< _client.cart[i]<<"||" << _catalog.ids[i] << "->" << _catalog.names[i] << "->" << _catalog.prices[i] << "->" << _catalog.prices[i] * _client.cart[i] << endl;
+            cout << left << setfill('.') << "|" << right << setw(5) << _catalog.ids[i] << "|" << setw(20) << _client.cart[i]
+                << "|" << setw(20) << left << _catalog.names[i] << "|" << setw(25) << _catalog.prices[i] << "|" << setw(15)
+                << _catalog.prices[i] * _client.cart[i] << "|" << endl;
+
+            if (_catalog.ids[i] >= 2000 && _catalog.ids[i] <= 3000)
+            {
+                products += _catalog.names[i] + "|";
+                discount += (_catalog.prices[i] * _client.cart[i]) * 0.2;
+            }
+            total += _catalog.prices[i] * _client.cart[i];
+
         }
     }
+
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n|";
+
+    message = "20% de descuento en hogar :" + products;
+    cout << right << setw(90) << setfill('|') << message << setfill('.') << setfill(' ') << "\n|";
+
+    message = "Total sin desc :";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << total << "|" << setfill(' ') << "\n|";
+
+    message = "Total descuentos :";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << discount << "|" << setfill(' ') << "\n|";
+
+    message = "Total con descuentos:";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << total - discount << "|" << setfill(' ') << "\n|";
+
+    cout << setw(90) << setfill('|') << "|" << setfill(' ') << "\n";
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n|";
+
+    cout << right << setw(49) << setfill('|') << "ID del cliente :" << setfill('.') << right << setw(40) << fixed << _client.id << setfill(' ') << "|\n||";
+    cout << right << setw(48) << setfill('|') << "Direccion :" << setfill('.') << right << setw(40) << fixed << _client.address << setfill(' ') << "|\n";
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+    cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
+
+
+
+
+
 }
 
 #pragma endregion
@@ -319,7 +390,7 @@ void Buy(Store& current, Store& b, Store& c, Store& d, Client &_client);
 int main()
 {
     
-    system("color B0");
+    system("color 0F");
     Catalogue my_cat;
     Init(my_cat);
     int units[4][20] = { {3,5,76,34,21,3,65,43,123,54,87,213,4,31,3,0,12,45,23,3},
@@ -524,9 +595,9 @@ void Buy(Store& current, Store& b, Store& c, Store& d,Client &_client)
 
     if (_client.GetNumCredit() > 0)
     {
-        cout << _client.GetCredit();
+        
 
-        cout << "Ingrese el ID del producto que desea comprar ->";
+        cout << "El cupo de su tarjeta es de ||" << fixed << _client.GetNumCredit() << "||\nIngrese el ID del producto que desea comprar ->";
         cin >> id;
 
         cout << "Ingrese la cantidad que desea ->";
@@ -538,9 +609,7 @@ void Buy(Store& current, Store& b, Store& c, Store& d,Client &_client)
             current.Show(true);
             if (check == 1)
             {
-                cout << message;
-
-                cout << " \nIngrese el ID del producto que desea comprar ->";
+                cout << message + "\nIngrese el ID del producto que desea comprar ->";
                 cin >> id;
 
                 cout << "\nIngrese la cantidad que desea ->";
