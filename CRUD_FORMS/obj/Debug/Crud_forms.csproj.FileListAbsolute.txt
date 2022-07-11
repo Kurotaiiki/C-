@@ -9,3 +9,14 @@ F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.GenerateResource.cac
 F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.CoreCompileInputs.cache
 F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.exe
 F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.pdb
+D:\Laptop\VS code\C#\CRUD_FORMS\bin\Debug\Crud_forms.exe.config
+D:\Laptop\VS code\C#\CRUD_FORMS\bin\Debug\Crud_forms.exe
+D:\Laptop\VS code\C#\CRUD_FORMS\bin\Debug\Crud_forms.pdb
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.csproj.AssemblyReference.cache
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.csproj.SuggestedBindingRedirects.cache
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.Form1.resources
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.Properties.Resources.resources
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.csproj.GenerateResource.cache
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.csproj.CoreCompileInputs.cache
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.exe
+D:\Laptop\VS code\C#\CRUD_FORMS\obj\Debug\Crud_forms.pdb

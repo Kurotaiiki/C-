@@ -13,7 +13,7 @@ namespace Crud_forms
 {
     public partial class Form1 : Form
     {
-        OracleConnection ora = new OracleConnection("DATA SOURCE = xe ; PASSWORD=123;USER ID=usuarioprueba;");
+        OracleConnection ora = new OracleConnection("DATA SOURCE = xe ; PASSWORD=123;USER ID=pruebaUsuario;");
         public Form1()
         {
             InitializeComponent();
