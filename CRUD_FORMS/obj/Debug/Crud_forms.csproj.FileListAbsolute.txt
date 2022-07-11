@@ -1,0 +1,11 @@
+F:\Desktop\VSCode\C#\Crud_forms\bin\Debug\Crud_forms.exe.config
+F:\Desktop\VSCode\C#\Crud_forms\bin\Debug\Crud_forms.exe
+F:\Desktop\VSCode\C#\Crud_forms\bin\Debug\Crud_forms.pdb
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.AssemblyReference.cache
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.SuggestedBindingRedirects.cache
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.Form1.resources
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.Properties.Resources.resources
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.GenerateResource.cache
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.csproj.CoreCompileInputs.cache
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.exe
+F:\Desktop\VSCode\C#\Crud_forms\obj\Debug\Crud_forms.pdb

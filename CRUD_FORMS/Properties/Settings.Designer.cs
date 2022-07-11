@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRUD_FORMS.Properties
+namespace Crud_forms.Properties
 {
 
 

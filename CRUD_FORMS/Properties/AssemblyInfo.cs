@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("CRUD_FORMS")]
+[assembly: AssemblyTitle("Crud_forms")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CRUD_FORMS")]
+[assembly: AssemblyProduct("Crud_forms")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("009b70aa-a931-4602-b0e3-fc22b5389ea3")]
+[assembly: Guid("6e0504b6-8d34-4834-9d34-dd4f438cd02a")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

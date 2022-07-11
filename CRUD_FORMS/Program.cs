@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CRUD_FORMS
+namespace Crud_forms
 {
     internal static class Program
     {

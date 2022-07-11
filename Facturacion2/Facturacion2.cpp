@@ -114,6 +114,53 @@ Client::Client(Catalogue _catalogue)
 {
     catalogue = _catalogue;
 
+
+    int limit = 0;    
+
+    do
+    {
+        cout << "Desea Limitar el cupo de la tarjeta a 3.000.000 ? \n1.Si\n2.No\n->";
+        cin >> limit;
+
+        if (limit == 1 )
+        {
+            do
+            {
+                cout << "Cual es el cupo de su tarjeta ->";
+                cin >> credit;
+                if (credit > 3000000 || credit < 1)
+                {
+                    system("cls");
+                    cout << "Fuera del rango!!!! ... Maximo 3.000.000!!!\n";
+                }
+                else
+                {
+                    limit = 3;
+                }
+
+            } while (limit != 3);
+        }
+        else if (limit == 2)
+        {
+            do
+            {
+                cout << "Cual es el cupo de su tarjeta ->";
+                cin >> credit;
+                
+
+            } while (credit < 1);
+            
+            limit = 3;
+        } 
+        else
+        {
+            system("cls");
+            cout << "Fuera del rango!!!!";
+        }
+
+
+    } while (limit !=3);
+
     cout << "Cual es su id ->";
     cin >> id;
 
@@ -123,13 +170,11 @@ Client::Client(Catalogue _catalogue)
     getline(cin, address);
 
 
-    cout << "Cual es el cupo de su tarjeta ->";
-    cin >> credit;
-
     for (int i = 0; i < 20; i++)
     {
         cart[i] = 0;
     }
+
 
 
 }
@@ -137,6 +182,8 @@ bool Client::Buy(int _index, int _units)
 {
     startBuy = true;
     catalogue.Find(_index);
+
+    
 
     if (credit - (_units * catalogue.Price(_index)) < 0)
     {
@@ -271,7 +318,7 @@ bool Store::Sell(int _id, int _units, string& _message, Store& b, Store& c, Stor
 
     if (stock[_index] - _units < 0)
     {
-        _message = "El maximo de unidades que se pueden vender son ->" + to_string(stock[_index]) + "\nIngrese una cantidad valida ->";
+        _message = "El maximo de unidades que se pueden vender son ->" + to_string(stock[_index]) + "\n";
         option = 2;
         return false;
     }
@@ -330,13 +377,13 @@ void Store::Facture(Client _client, Catalogue _catalog)
     {
         if (_client.cart[i] > 0)
         {
-            cout << left << setfill('.') << "|" << right << setw(5) << _catalog.ids[i] << "|" << setw(20) << _client.cart[i]
-                << "|" << setw(20) << left << _catalog.names[i] << "|" << setw(25) << _catalog.prices[i] << "|" << setw(15)
-                << _catalog.prices[i] * _client.cart[i] << "|" << endl;
+            cout << left << setfill('.') << "|\x1B[37m" << right << setw(5) << _catalog.ids[i] << "\x1B[36m|\x1B[37m" << setw(8) << _client.cart[i]
+                << "\x1B[36m|\x1B[37m" << setw(23) << right << _catalog.names[i] << "\x1B[36m|\x1B[37m"  << setw(16) << _catalog.prices[i] << "\x1B[36m|\x1B[37m" << setw(33)
+                << _catalog.prices[i] * _client.cart[i] << "\x1B[36m|" << endl;
 
             if (_catalog.ids[i] >= 2000 && _catalog.ids[i] <= 3000)
             {
-                products += _catalog.names[i] + "|";
+                products += _catalog.names[i] + "\x1B[36m|\x1B[37m";
                 discount += (_catalog.prices[i] * _client.cart[i]) * 0.2;
             }
             total += _catalog.prices[i] * _client.cart[i];
@@ -346,24 +393,28 @@ void Store::Facture(Client _client, Catalogue _catalog)
 
     cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
     cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n|";
+    if (products == "")
+    {
+        products = "NINGUNO\x1B[36m|\x1B[37m";
+    }
 
-    message = "20% de descuento en hogar :" + products;
-    cout << right << setw(90) << setfill('|') << message << setfill('.') << setfill(' ') << "\n|";
+    message = "\x1B[37m20% de descuento en hogar :" + products + "\x1B[36m";
+    cout << right << setw(110) << setfill('|') << message << setfill('.') << "\n" << setfill(' ');
 
-    message = "Total sin desc :";
-    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << total << "|" << setfill(' ') << "\n|";
+    message = "\x1B[37mTotal sin desc :";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(20) << right << fixed << total << "\x1B[36m|" << setfill(' ') << "\n|";
 
-    message = "Total descuentos :";
-    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << discount << "|" << setfill(' ') << "\n|";
+    message = "\x1B[37mTotal descuentos :";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(19) << right << fixed << discount << "\x1B[36m|" << setfill(' ') << "\n|";
 
-    message = "Total con descuentos:";
-    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(14) << right << fixed << total - discount << "|" << setfill(' ') << "\n|";
+    message = "\x1B[37mTotal con descuentos:";
+    cout << right << setw(75) << setfill('|') << message << setfill('.') << setw(19) << right << fixed << total - discount << "\x1B[36m|" << setfill(' ') << "\n|";
 
     cout << setw(90) << setfill('|') << "|" << setfill(' ') << "\n";
     cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n|";
 
-    cout << right << setw(49) << setfill('|') << "ID del cliente :" << setfill('.') << right << setw(40) << fixed << _client.id << setfill(' ') << "|\n||";
-    cout << right << setw(48) << setfill('|') << "Direccion :" << setfill('.') << right << setw(40) << fixed << _client.address << setfill(' ') << "|\n";
+    cout << right << setw(49) << setfill('|') << "\x1B[37mID del cliente :" << setfill('.') << right << setw(45) << fixed << _client.id << setfill(' ') << "\x1B[36m|\n||";
+    cout << right << setw(48) << setfill('|') << "\x1B[37mDireccion :" << setfill('.') << right << setw(45) << fixed << _client.address << setfill(' ') << "\x1B[36m|\n";
     cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
     cout << setw(91) << setfill('|') << "|" << setfill(' ') << "\n";
 
@@ -374,15 +425,6 @@ void Store::Facture(Client _client, Catalogue _catalog)
 }
 
 #pragma endregion
-
-
-
-
-
-
-
-
-
 
 void Init(Catalogue& catalogue);
 void Buy(Store& current, Store& b, Store& c, Store& d, Client &_client);
@@ -429,7 +471,7 @@ int main()
                 {
                     cout << "En que region se encuentra .:\n1.Norte\n2.Sur\n3.Volver a ciudad\n->";
                 }
-                
+
                 cin >> option;
                 system("cls");
 
@@ -440,7 +482,7 @@ int main()
                     do
                     {
                         a.Show(false);
-                        Buy(a, c, b, d, client);
+                        Buy(a, b, c, d, client);
 
                         cout << "\n1.Si desea seguir comprando\n2.Si desea salir\n->";
                         cin >> option;
@@ -463,10 +505,30 @@ int main()
                     } while (option != 3);
                     break;
                 case 2:
-                    option = 3;
+                    do
+                    {
+                        b.Show(false);
+                        Buy(b, a, c, d, client);
 
-                    b.Show(false);
-                    Buy(b, a, c, d, client);
+                        cout << "\n1.Si desea seguir comprando\n2.Si desea salir\n->";
+                        cin >> option;
+
+                        switch (option)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            b.Facture(client, my_cat);
+                            option = 3;
+                            break;
+                        default:
+                            cout << "\nFUERA DEL RANGO PERMITIDO\n";
+                            system("pause");
+                            cin.clear();
+                            break;
+                        }
+
+                    } while (option != 3);
                     break;
                 case 3:
                     break;
@@ -491,28 +553,71 @@ int main()
                 system("cls");
                 if (client.startBuy)
                 {
-                    cout << "En que region se encuentra .:\n1.Norte\n2.Sur\n3.Salir\n->";
+                    cout << "En que region se encuentra .:\n1.Oriente\n2.Occidente\n3.Salir\n->";
                 }
                 else
                 {
-                    cout << "En que region se encuentra .:\n1.Norte\n2.Sur\n3.Volver a ciudad\n->";
+                    cout << "En que region se encuentra .:\n1.Oriente\n2.Occidente\n3.Volver a ciudad\n->";
                 }
+
                 cin >> option;
                 system("cls");
 
                 switch (option)
                 {
                 case 1:
-                    option = 3;
-                    c.Show(false);
-                    Buy(c, a, b, d, client);
+
+                    do
+                    {
+                        c.Show(false);
+                        Buy(c, b, a, d, client);
+
+                        cout << "\n1.Si desea seguir comprando\n2.Si desea salir\n->";
+                        cin >> option;
+
+                        switch (option)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            a.Facture(client, my_cat);
+                            option = 3;
+                            break;
+                        default:
+                            cout << "\nFUERA DEL RANGO PERMITIDO\n";
+                            system("pause");
+                            cin.clear();
+                            break;
+                        }
+
+                    } while (option != 3);
                     break;
-
-
                 case 2:
-                    option = 3;
-                    d.Show(false);
-                    Buy(d, b, c, a, client);
+                    do
+                    {
+                        d.Show(false);
+                        Buy(d, a, c, b, client);
+
+                        cout << "\n1.Si desea seguir comprando\n2.Si desea salir\n->";
+                     
+                        cin >> option;
+
+                        switch (option)
+                        {
+                        case 1:
+                            break;
+                        case 2:
+                            d.Facture(client, my_cat);
+                            option = 3;
+                            break;
+                        default:
+                            cout << "\nFUERA DEL RANGO PERMITIDO\n";
+                            system("pause");
+                            cin.clear();
+                            break;
+                        }
+
+                    } while (option != 3);
                     break;
                 case 3:
                     break;
@@ -530,19 +635,6 @@ int main()
                 option = 0;
             }
             break;
-        case 3:
-            break;
-        default:
-            cout << "\nFUERA DEL RANGO PERMITIDO\n";
-            system("pause");
-
-            break;
-        }
-        if (!client.startBuy)
-        {
-
-            system("pause");
-            option = 0;
         }
     } while (option != 3);
 
@@ -578,7 +670,7 @@ void Init(Catalogue &catalogue)
     double prices[20] = { 2500000, 15000, 5000000, 4500000, 300000,
                         5200000, 1500000, 800000, 45000, 200000,
                         4000000, 350000, 15000, 100000, 3500000,
-                        1200000, 170000, 1000000, 240000, 300000 };
+                        1200000, 170000, 60000, 240000, 300000 };
 
     catalogue.Fill(names, ids, distributors, descriptions, prices);
     
@@ -618,10 +710,12 @@ void Buy(Store& current, Store& b, Store& c, Store& d,Client &_client)
             else if (check == 2)
             {
                 cout << message;
-                cin >> units;
 
                 cout << "\nIngrese el ID del producto que desea comprar ->";
                 cin >> id;
+
+                cout << "\nIngrese la cantidad que desea ->";
+                cin >> units;
             }
         }
     }
